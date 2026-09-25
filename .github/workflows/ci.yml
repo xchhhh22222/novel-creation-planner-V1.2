@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Python syntax
+        run: python -m py_compile scripts/*.py
+      - name: Creation plan regression
+        run: python scripts/test_validate_creation_plan.py
+      - name: Component retrieval regression
+        run: python scripts/test_search_dna_candidates.py
+      - name: V1.2 benchmark and climax regression
+        run: python scripts/test_validate_v12_artifacts.py
