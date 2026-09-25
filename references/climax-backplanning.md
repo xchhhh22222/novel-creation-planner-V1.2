@@ -1,8 +1,8 @@
-# 高潮目标核与前100章倒推 V1.3
+# 高潮目标核与前100章倒推 V1.4
 
 ## 0. V1.3 前置选择门
 
-只有 `selection.status=confirmed` 后才能运行本文件。
+只有 `selection.status=confirmed` 且 `SCALE_GATE=PASS` 后才能运行本文件。
 
 用户尚未从3个书名、3个开篇、3个金手指中完成选择时：
 
@@ -13,6 +13,54 @@
 
 战略目标物仍然是创造层的新对象，但必须由素材库支撑：至少引用一个“目标本体/收益”素材，以及一个“稀缺/控制/争夺/高潮机制”素材。无来源时 GAP/HOLD。
 
+
+## 0.1 高潮状态跃迁硬门
+
+每个大高潮在想“发生什么”之前，先回答：
+
+1. 主角高潮前是什么实力？
+2. 高潮后达到什么实力或战斗能力？
+3. 主角真正获得了什么核心东西？
+4. 高潮前身份地位是什么？
+5. 高潮后身份地位提升到哪里？
+6. 新获得什么权限、地图、信息或资源入口？
+7. 新增了哪些责任或敌人？
+8. 下一阶段最大问题是什么？
+
+固定保存：
+
+```json
+{
+  "climax_state_transition": {
+    "power_before": "",
+    "power_after": "",
+    "combat_capability_change": "",
+    "key_gain": {
+      "name": "",
+      "gain_type": "technique|artifact|resource|inheritance|authority|information|other",
+      "why_it_matters": ""
+    },
+    "status_before": "",
+    "status_after": "",
+    "new_permissions": [],
+    "new_responsibilities": [],
+    "new_enemies": [],
+    "next_stage_problem": ""
+  }
+}
+```
+
+这些字段不完整，高潮不得标 PASS。
+
+### 资格与奖品分离
+
+`qualification / access_key / ranking / license` 默认属于 `qualification_or_access_gate`。
+
+它们可以是附带收益，但不应成为大高潮唯一奖品。
+
+真正的 strategic target 应优先让读者产生“主角必须拿到它”的期待，例如功法、法宝、传承、稀有资源、核心控制权、关键秘密等。
+
+若确实只以资格作为主奖品，必须额外证明它能同时改变“实力/核心资源/身份/权限”至少三项。
 
 默认目标：**先设计前100章约2个大高潮，再从高潮往前倒推。**
 
@@ -221,6 +269,7 @@
 - 主角为什么必须要、竞争者为什么也要均明确；
 - 多方势力入局有利益原因；
 - 高潮结果有兑现、代价、不可逆变化和下一阶段入口；
+- 每个高潮明确 power_before/power_after、key_gain、status_before/status_after、new_permissions、new_responsibilities/new_enemies 与 next_stage_problem；
 - 每个高潮有4—8个倒推锚点；
 - 前20章至少能映射到市场结构 lesson；
 - 小剧情能回到阶段目标或高潮前置条件；

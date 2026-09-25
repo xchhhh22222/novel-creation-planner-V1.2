@@ -77,7 +77,27 @@ selection=pending 时必须停止。
 
 用户分别确认书名、开篇、金手指后，才能进入 selected/backplanned。
 
-## 五、选定版本后的完整审计
+## 五、前100章局部 Scale 审计
+
+用户完成选择后，不得直接进入高潮。
+
+先检查：
+
+- active factions 是否4—7个，并有明确盟友/冲突/依赖关系；
+- external factions 是否只保留0—2个“伸手进来”的高层势力；
+- 当前体系是否2—3套，并明确社会评价、资源竞争与主角关系；
+- 境界是否只展开前100章会看到的层级；
+- technique_pool 是否至少3项；
+- combat_art_pool 是否至少3项；
+- artifact_pool 是否至少2项；
+- ordinary_resources 是否3—6项；
+- local_map_nodes 是否3—6项；
+- golden_finger_interfaces 是否说明能做什么、不能替代什么、怎样制造追读期待；
+- handoff_after_100 是否可供后继 plan 接续。
+
+缺失则 SCALE_GATE=HOLD。
+
+## 六、选定版本后的完整审计
 
 冻结 selected_story_variant 后检查：
 
@@ -89,7 +109,7 @@ selection=pending 时必须停止。
 - 每个高潮是否有4—8个 backward beats；
 - 小剧情是否服务阶段目标或高潮前置条件。
 
-## 六、原创性
+## 七、原创性
 
 可以借运行结构，不复制：
 
@@ -103,19 +123,19 @@ selection=pending 时必须停止。
 
 DIRECT 表示直接保留“机制层”，不是复制原书包装。
 
-## 七、来源集中度
+## 八、来源集中度
 
 world_premise、golden_finger、primary_system、faction_ecology、climax_pattern 如果3项以上高度依赖同一本来源书，触发 SOURCE_CONCENTRATION_RISK。
 
 同书 system + realm + technique 可以作为一个成长组件包理解，不机械按三次借鉴计算。
 
-## 八、统一债务账本
+## 九、统一债务账本
 
 维护情绪债、成长债、资源债、人物关系债、地图/规则债、反派压力债、主线/伏笔债。
 
 升级、击杀、获奖和拿资源本身不自动算兑现；至少要有公开结果、他人反应、关系动作、代价回响或主角选择被验证。
 
-## 九、输出顺序
+## 十、输出顺序
 
 ### 用户尚未选择
 
@@ -137,9 +157,11 @@ world_premise、golden_finger、primary_system、faction_ecology、climax_patter
 再输出：
 
 1. selected_story_variant；
-2. 势力与资源闭环；
-3. strategic_target；
-4. 前100章两个大高潮；
-5. backward beats；
-6. story spine；
-7. 债务与缺口。
+2. local_scale_1_100（势力关系、体系、境界、功法/武技/法宝、资源、地图、金手指接口）；
+3. SCALE_GATE 结果；
+4. strategic_target；
+5. 前100章两个大高潮及每个高潮的实力/收获/身份/权限跃迁；
+6. backward beats；
+7. story spine；
+8. handoff_after_100；
+9. 债务与缺口。
