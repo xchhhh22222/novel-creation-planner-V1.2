@@ -18,7 +18,7 @@ description: V1.3 单书选项型小说创造规划器：市场层只学习节�
 - `market-opening-synthesis.md` 仅作为旧版轻量开篇横评参考，不再定义 V1.2 标准流程。
 - 需要创造金手指、人物关系、世界观、修炼和资源循环：读取 [references/creation-kernel.md](references/creation-kernel.md)。
 - 需要规划前300章：读取 [references/architecture-300.md](references/architecture-300.md)。
-- 需要三案比较、原创性、兼容性、债务和素材覆盖审核：读取 [references/audit-and-output.md](references/audit-and-output.md)。
+- 需要单书选项板、原创性、兼容性、来源硬门、债务和素材覆盖审核：读取 [references/audit-and-output.md](references/audit-and-output.md)。
 - 需要落盘机器可检验的计划包：读取 [references/plan-schema.md](references/plan-schema.md)，并运行 `scripts/validate_creation_plan.py`。
 - 保存 V1.2 市场对标包或高潮倒推包时，分别运行 `python scripts/validate_v12_artifacts.py benchmark <market_benchmark.json>` 与 `python scripts/validate_v12_artifacts.py climax <climax_backplan.json>`。
 - **需要从素材库选材、决定先查什么/查多少/何时停止：必须读取 [references/material-dispatch.md](references/material-dispatch.md)。**
@@ -110,8 +110,8 @@ description: V1.3 单书选项型小说创造规划器：市场层只学习节�
 
 - 市场样本带平台、榜单、日期、来源和访问边界；Top10 排名位置全部保留，合格前10章正文样本通常不少于6本，否则标记偏差；完整 V1.2 对标还要求3本深拆至前20章。
 - 市场证据必须包含新书榜前10名清单、逐书前10章下载状态、逐书开篇卡和横向信号矩阵；不能只有排名、书名、简介或标签。
-- 三案在核心承诺、金手指、人物关系、冲突、资源、制度或长线问题中至少四项实质不同。
-- 推荐案必须回答“Top10 学到了什么结构、3本为什么入选、前三章为什么追读、第一高潮怎样兑现、第二高潮怎样由第一高潮后果推出”。默认优先把前100章两次大高潮做实；300章/百万字规划在用户要求且素材足够时再展开。
+- 不再要求三个完整故事。三个书名、三个开篇、三个金手指都必须服务同一个 shared_story_core。
+- 用户选择前必须回答“Top10 学到了什么结构、3本为什么入选、共享故事核心是什么、三个开篇如何只改变入场结构、三个金手指分别来自哪些素材”。用户确认后再回答第一高潮怎样兑现、第二高潮怎样由第一高潮后果推出。
 - 推荐案的金手指必须有名称、输入、处理、输出、限制、代价、失败状态、克制方式和阶段成长；世界观必须有时代前提、核心危机、具体核心势力及利益冲突、资源循环和普通人接口；修炼部分必须明确 1～N 套体系、各自境界验证、兼修/冲突关系，以及核心功法/法宝/资源的适配。
 - 只有用户要求七阶段或前300章规划时，七个阶段才逐一包含目标、冲突、成长、资源、人物、情绪兑现、主线进展、疲劳刷新和不可逆状态变化。
 - 第一轮只输出一个 shared_story_core、3个书名、3个开篇、3个素材溯源金手指及真实素材ID；用户确认后才输出战略目标物、两个高潮倒推锚点、债务账本、风险和待确认项。
