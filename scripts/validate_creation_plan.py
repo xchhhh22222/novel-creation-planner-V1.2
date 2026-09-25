@@ -188,6 +188,12 @@ def main() -> int:
         print(json.dumps({"ok": False, "errors": [str(exc)]}, ensure_ascii=False, indent=2))
         return 1
 
+    if isinstance(data, dict) and data.get("schema_version") == 3:
+        from validate_v13_plan import validate_plan
+        errors = validate_plan(data)
+        print(json.dumps({"ok": not errors, "errors": errors}, ensure_ascii=False, indent=2))
+        return 0 if not errors else 1
+
     errors: list[str] = []
     require_keys(errors, data, PLAN_FIELDS, "plan")
     if not isinstance(data, dict):
