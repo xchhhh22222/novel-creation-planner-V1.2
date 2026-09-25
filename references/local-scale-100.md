@@ -1,4 +1,4 @@
-# 前100章局部 Scale 规划 V1.5
+# 前100章局部 Scale 规划 V1.6
 
 本文件只规划**当前100章真正会使用的世界信息**。
 
@@ -148,7 +148,17 @@ future_realm_hint
 
 不能每章都只靠刷新菜单做钩子，要和任务、关系、资源、危机交替。
 
-## 9. 前100章 handoff
+## 9. 人物生态：不能只搭组织不搭人
+
+进入本节前读取 [character-ecology-100.md](character-ecology-100.md)。
+
+前100章必须把势力、女主、反派、配角和关系发动机放进同一个局部网络。人物功能记录只能说明“这个人承担什么剧情作用”；女主与长线反派的个体动机、关键选择、边界和关系弧必须优先来自 novel-character-card-miner 的 heroine / long_arc_villain 派生卡。未生成个体卡时必须标 GAP，不能用功能标签冒充完整人物素材。
+
+若用户明确 relationship_mode=multi_heroine：女主候选4—8、active 3—4、latent 0—2；active 女主至少来自2本不同来源书的人物卡机制；任意两位 active 女主的 differentiation_signature 至少3项不同；active 女主 first_entry_window 至少出现2种不同入场窗口。
+
+反派候选3—6、active 2—4；候选至少覆盖 competitor / interest_enemy / long_arc / boss_disaster 中3类，active 至少2类。配角3—6；relationship_engine_pool 4—8；每位 active 女主至少有1条与主角的长期发动机。faction_character_links 必须覆盖每个 active faction。
+
+## 10. 前100章 handoff
 
 必须输出 `handoff_after_100`：
 
@@ -168,7 +178,7 @@ future_realm_hint
 
 101章以后不在本次 scale 展开。
 
-## 10. SCALE_GATE
+## 11. SCALE_GATE
 
 PASS 至少要求：
 
@@ -182,6 +192,9 @@ PASS 至少要求：
 - ordinary_resources 3—6 种；
 - local_map_nodes 3—6 个；
 - golden_finger_interfaces 完整；
+- character_ecology 完整并满足所选 relationship_mode；
+- 多女主模式女主候选/active数量、差异化、分阶段入场均通过；
+- 反派池、配角池、relationship_engine_pool 与 faction_character_links 通过；
 - handoff_after_100 完整。
 
 缺失时 HOLD，不得直接跳高潮。

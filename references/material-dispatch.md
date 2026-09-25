@@ -66,8 +66,8 @@ V1.3 禁止“把整个素材库都读一遍再想故事”，也禁止素材不
 ### D. 人物与剧情槽位
 
 - `relationship_engine`：人物关系持续制造选择的机制；
-- `heroine`：女主个体目标、资源和主动行动；
-- `antagonist`：长线反派目标、筹码和压力升级；
+- `heroine`：女主个体目标、资源、边界、关键选择与关系变化；优先使用 heroine_character 派生卡；
+- `antagonist`：长线反派目标、筹码、计划调整和压力升级；优先使用 long_arc_villain 派生卡；
 - `plotline`：持续主/支线；
 - `plot_mechanism`：可重复剧情机制；
 - `opening`：前三章承诺、首次验证与4—10章循环；
@@ -87,8 +87,9 @@ V1.3 禁止“把整个素材库都读一遍再想故事”，也禁止素材不
 | artifact | 04_修炼体系 `artifact` | 所属 system / per_book |
 | growth_resource | 04_修炼体系 `resource_asset` + 03_世界观资源循环 | 两边原记录 |
 | system_relation | 04_修炼体系 `system_relation` | 同书相关 systems |
-| relationship_engine | 05_人物功能与标签 | per_book / derived |
-| heroine / antagonist | 05_人物派生卡 | 原人物记录 |
+| relationship_engine | 05_人物功能与标签 + 人物个体卡 | per_book / derived |
+| heroine | novel-character-card-miner heroine_character | 原人物记录 / 05人物功能 |
+| antagonist | novel-character-card-miner long_arc_villain | 原人物记录 / 05人物功能 |
 | plotline | 06_主线与支线 | per_book |
 | opening | 07_开篇 + 市场样本 | per_book / opening cards |
 | first_major_climax | 08_篇章结构 | arc / major storyline |
@@ -112,7 +113,7 @@ V1.3 禁止“把整个素材库都读一遍再想故事”，也禁止素材不
 
 骨架成立后再填：
 
-`faction_ecology → resource_loop → antagonist → relationship_engine → plotline`
+`faction_ecology → resource_loop → heroine / antagonist → relationship_engine → plotline`
 
 检查“谁控制资源、谁阻碍主角、为什么必须行动”。
 
@@ -345,3 +346,10 @@ option_board = blocked
 6. 分别标 `DIRECT / ADAPT / HYBRID`。
 
 市场 benchmark 不能作为金手指来源。
+
+
+## 14. V1.6 人物调度门
+
+人物层禁止只用 character_function 完成。调度顺序：先查 heroine_character / long_arc_villain 派生卡；再回读人物功能记录；再回查世界观 faction；最后生成新书人物候选。
+
+多女主模式默认先召回6—10张女主原卡，形成4—8个新书候选，再筛3—4名 active。反派先召回长线反派卡与Boss/竞争者功能素材，形成3—6候选再筛2—4 active。素材库未生成 heroine/long_arc_villain 派生卡时，人物层状态必须为 GAP/HOLD，不能把人物功能标签当作已完成。

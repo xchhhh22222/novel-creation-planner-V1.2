@@ -141,3 +141,15 @@ GOLDEN_FINGER_SOURCE_GATE = FAIL
 如果用户之后明确说“这次允许原创某个核心槽位”，应单独记录用户授权并把该槽位标成 `USER_OVERRIDE`。
 
 默认 V1.3 不主动启用这个例外。
+
+
+## 9. V1.6 人物来源门
+
+当用户明确要求多女主或人物关系是卖点时，heroine 与 antagonist 从可选槽位升级为 local-scale required slots。
+
+- heroine 优先来源 heroine_character 派生卡；人物功能记录只可补充职责，不可独立支撑完整女主；
+- long-arc antagonist 优先来源 long_arc_villain 派生卡；
+- 一次性Boss/竞争者可以由人物功能、战斗资产和剧情机制补充；
+- 没有个体卡时标 CHARACTER_CARD_GAP，不得凭标签生成完整人物；
+- 新书人物必须至少重设背景、目标、资源、关系、关键选择、结果中的三项；
+- 多女主 active 角色不能全部来自同一本来源书的人物结构。

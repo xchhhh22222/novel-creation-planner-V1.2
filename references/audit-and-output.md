@@ -206,3 +206,18 @@ SCALE_GATE 之前额外检查：
 - 商品必须有可记忆展示名，不得只写“气血控制/肉身适应/悟性”。
 
 任何一项缺失，不得把“素材库利用充分”判为 PASS。
+
+
+## 十一、V1.6 人物生态审计
+
+- relationship_mode 必须明确；用户指定多女主时不得降级成单女主；
+- heroine_candidate_pool 4—8，active 3—4，latent 0—2；
+- 每位 active 女主有独立目标、决策规律、资源与限制、不可退让边界、与主角的长期绑定原因、绑定解除条件、前100章关系弧、入场窗口和素材引用；
+- 任意两位 active 女主 differentiation_signature 至少3项不同；不得只是性格形容词不同；
+- active 女主 first_entry_window 至少2种；
+- antagonist_candidate_pool 3—6，active 2—4；候选池至少3种 antagonist_layer，active 至少2种；
+- supporting_character_pool 3—6；relationship_engine_pool 4—8；
+- 每位 active 女主至少绑定一条 protagonist relationship engine；
+- faction_character_links 覆盖全部 active factions；
+- heroine / long_arc_villain 优先引用 character-card 素材，不能由 character-function 标签冒充；
+- 金手指菜单硬门仅在 engine_type=daily_priced_random_menu 时启用。

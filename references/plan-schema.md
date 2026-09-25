@@ -1,6 +1,6 @@
-# 创造计划机器契约 V1.5
+# 创造计划机器契约 V1.6
 
-V1.5 使用 `schema_version: 5`，在 V1.4 local scale 基础上增加“候选池扩展 + 原创重命名 + 金手指菜单引擎”。
+V1.6 使用 schema_version: 6，在 V1.5 候选池基础上增加“人物生态 + 多女主/长线反派硬门”，并把每日预算菜单改成条件触发。
 
 V1—V4 继续兼容。
 
@@ -198,3 +198,14 @@ python scripts/validate_creation_plan.py plan.json
 ```
 
 schema_version 5 自动路由到 `validate_v15_plan.py`。
+
+
+## V1.6 character_ecology
+
+local_scale_1_100.character_ecology 包含 relationship_mode、heroine_candidate_pool、active_heroine_ids、latent_heroine_ids、antagonist_candidate_pool、active_antagonist_ids、supporting_character_pool、relationship_engine_pool、faction_character_links。
+
+multi_heroine 数量契约：女主候选4—8，active 3—4，latent 0—2；反派候选3—6，active 2—4；配角3—6；关系发动机4—8。女主 active pair 的 differentiation_signature 至少3项不同；active 女主 first_entry_window 至少2种；每个 active faction 必须在 faction_character_links 中出现。
+
+## V1.6 金手指条件校验
+
+golden_finger_detail_pack 不再对所有金手指强制为 daily menu。若 engine_type=daily_priced_random_menu，完整继承 V1.5 的24+商品、10项菜单、明码标价、多选购买、3张示例菜单等硬门；其它金手指只按其自身来源、限制与 golden_finger_interfaces 校验。
