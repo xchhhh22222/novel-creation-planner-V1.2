@@ -1,256 +1,195 @@
-# 创造计划机器契约 V1.4
+# 创造计划机器契约 V1.5
 
-V1.4 当前写入版本为 `schema_version: 4`。
+V1.5 使用 `schema_version: 5`，在 V1.4 local scale 基础上增加“候选池扩展 + 原创重命名 + 金手指菜单引擎”。
 
-V1/V2/V3 旧计划继续兼容；新开书写 V4。
+V1—V4 继续兼容。
 
-## 顶层
-
-```json
-{
-  "schema_version": 4,
-  "plan_id": "PLAN:...",
-  "status": "candidate",
-  "creation_mode": "greenfield",
-  "workflow_stage": "scaled",
-  "brief": {},
-  "shared_library_root": "D:/...",
-  "market_benchmark_ref": {},
-  "market_structural_lessons": [],
-  "library_usage": {},
-  "material_dispatch": {},
-  "shared_story_core": {},
-  "option_board": {},
-  "selection": {
-    "status": "confirmed",
-    "title_option_id": "TITLE:A",
-    "opening_option_id": "OPENING:A",
-    "golden_finger_option_id": "GFOPT:B"
-  },
-  "local_scale_1_100": {},
-  "scale_gate": {
-    "status": "PASS",
-    "reasons": []
-  },
-  "post_selection": {
-    "strategic_target_status": "ready",
-    "climax_backplan_ref": {}
-  },
-  "material_gap_orders": [],
-  "pending_decisions": []
-}
-```
-
-`workflow_stage` 允许：
-
-- `material_hold`
-- `option_board`
-- `selected`
-- `scaled`
-- `backplanned`
-
-V1.3 的 shared_story_core / option_board / selection 规则继续有效。
-
-## local_scale_1_100
+## V1.5 local_scale_1_100 新增字段
 
 ```json
 {
-  "scale_id": "SCALE:001",
-  "scope_label": "当前城市/区域",
-  "active_factions": [],
-  "external_factions": [],
-  "faction_relations": [],
-  "systems": [],
-  "system_relations": [],
-  "progression_scope": {},
+  "system_candidate_pool": [],
+  "active_system_ids": [],
+  "latent_system_ids": [],
   "technique_pool": [],
+  "active_technique_ids": [],
   "combat_art_pool": [],
+  "active_combat_art_ids": [],
   "artifact_pool": [],
-  "ordinary_resources": [],
-  "local_map_nodes": [],
-  "external_map_hooks": [],
-  "golden_finger_interfaces": {},
-  "handoff_after_100": {}
+  "active_artifact_ids": [],
+  "golden_finger_detail_pack": {}
 }
 ```
 
-### active_factions
+## 体系候选池
 
-必须 4—7 个。
+`system_candidate_pool`：4—6项。
 
-每项：
-
-```text
-faction_id
-name
-role
-controlled_assets_or_permissions
-current_interest
-protagonist_relation
-stage_entry
-material_refs
-```
-
-### faction_relations
-
-至少包含：
-
-- 1 条 `ally / conditional_ally / dependency / regulator`
-- 1 条 `competitor / hostile`
+至少来自3本不同来源书。
 
 每项：
 
 ```text
-from
-to
-relation_type
-reason
-```
-
-### external_factions
-
-0—2 个，仅描述它怎样伸手进当前城市：
-
-```text
-faction_id
-name
-interest
-local_touchpoint
-future_use
-material_refs
-```
-
-### systems
-
-必须 2—3 套。
-
-每套：
-
-```text
-system_id
-name
-social_status
-entry_condition
-power_source
-current_revealed_realms
-strength
-weakness
+candidate_id
+source_system_name_or_descriptor
+new_system_name
+core_mechanism
+social_role
 resource_dependency
-can_dual_cultivate
-relation_to_protagonist
+conflict_value
+fit_with_current_world
+status = active|latent|rejected
+selection_reason
 material_refs
 ```
 
-`system_relations` 至少1条，说明社会评价、资源竞争、互补/克制/互斥等。
+最终：
 
-### progression_scope
+- `active_system_ids`：2—3；
+- `latent_system_ids`：0—2；
+- active id 必须对应 local scale 正式 `systems[].system_id`。
+
+## 功法池
+
+`technique_pool`：6—10项。
+
+`active_technique_ids`：3—5项。
+
+每项在 V1.4 字段基础上增加：
 
 ```text
-current_revealed_realms
-protagonist_start_realm
-climax_1_expected_realm
-climax_2_expected_realm
-future_realm_hint
+source_name_or_descriptor
+naming_style
+rename_rationale
 ```
 
-只展开前100章会看到的层级。
+`name` 必须是新书原创名，不得等于来源名称/描述。
 
-### technique_pool / combat_art_pool / artifact_pool
+至少来自3本不同来源书。
 
-- technique_pool ≥ 3
-- combat_art_pool ≥ 3
-- artifact_pool ≥ 2
+## 武技池
 
-每项必须带 `material_refs`，不允许无来源临场补造。
+`combat_art_pool`：8—12项。
 
-### ordinary_resources
+`active_combat_art_ids`：4—6项。
 
-3—6 项。每项说明：
+新增：
 
 ```text
-resource_id
+source_name_or_descriptor
+naming_style
+rename_rationale
+function_category
+```
+
+至少覆盖5种 function_category，至少来自3本不同来源书。
+
+## 法宝 / 装备池
+
+`artifact_pool`：5—8项。
+
+`active_artifact_ids`：2—4项。
+
+新增：
+
+```text
+source_name_or_descriptor
+naming_style
+rename_rationale
+```
+
+至少来自2本不同来源书。
+
+## 原创重命名硬门
+
+对 technique/combat/artifact：
+
+```text
+normalize(name) != normalize(source_name_or_descriptor)
+```
+
+禁止直接沿用来源书专名。
+
+## 每日预算菜单引擎
+
+`golden_finger_detail_pack`：
+
+```json
+{
+  "engine_type": "daily_priced_random_menu",
+  "base_budget": 10,
+  "menu_size": 10,
+  "daily_reset": true,
+  "point_carryover": false,
+  "can_buy_multiple": true,
+  "offer_pool": [],
+  "sample_daily_menus": [],
+  "progression_unlocks": [],
+  "reader_hook_mechanism": ""
+}
+```
+
+### offer_pool
+
+至少24项。
+
+每项：
+
+```text
+offer_id
+source_name_or_descriptor
 name
-source
-controlled_by
-used_by
-acquisition
-consumption
-golden_finger_relation
+category
+price
+effect_value
+effect_unit
+effect_description
+duration
+prerequisite
+external_dependency
 material_refs
 ```
 
-### local_map_nodes
+规则：
 
-3—6 个当前城市节点。
+- price 为1—10整数；
+- effect_value 为数字；
+- effect_unit 非空；
+- name 必须做新书化重命名；
+- 至少覆盖6种 category；
+- 价格带必须同时覆盖1—3、4—6、7—10；
+- 整个 offer_pool 至少引用4个不同 material_id。
 
-`external_map_hooks` 0—2 个，只留后继接口。
+### sample_daily_menus
 
-### golden_finger_interfaces
+至少3张，每张：
 
-必须包含：
-
-```text
-can_strengthen
-cannot_replace
-dependencies
-anticipation_loop
-resource_loop_protection
+```json
+{
+  "menu_id": "DAY:OPENING",
+  "stage": "opening",
+  "offer_ids": ["O01","...共10项"],
+  "purchase_example": {
+    "selected_offer_ids": ["O01","O07"],
+    "total_spend": 10,
+    "why_this_choice": "",
+    "sacrifice": ""
+  }
+}
 ```
 
-### handoff_after_100
+要求：
 
-必须包含：
+- 每张恰好10个不同 offer；
+- 低/中/高价至少各1项；
+- selected_offer_ids 必须来自当日菜单；
+- total_spend 与实际价格和一致；
+- total_spend <= 10；
+- why_this_choice / sacrifice 非空。
 
-```text
-protagonist_power
-formal_status
-owned_techniques
-owned_combat_arts
-owned_artifacts
-known_systems
-unexpanded_systems
-active_factions
-external_factions_touched
-used_material_ids
-remaining_material_directions
-unpaid_promises
-next_stage_problem
-```
+### progression_unlocks
 
-## SCALE_GATE
-
-当 `workflow_stage=scaled/backplanned`：
-
-- `scale_gate.status` 必须为 PASS；
-- local scale 必须通过全部数量和引用规则；
-- `post_selection.strategic_target_status` 才能为 ready。
-
-selection 尚未确认时，local scale 不应被展开。
-
-## 高潮
-
-SCALE_GATE PASS 后，高潮使用 V1.4 backplan 契约：
-
-```bash
-python scripts/validate_v14_climax.py climax_backplan.json
-```
-
-每个大高潮必须包含：
-
-```text
-power_before
-power_after
-combat_capability_change
-key_gain
-status_before
-status_after
-new_permissions
-new_responsibilities
-new_enemies
-next_stage_problem
-```
-
-资格/排名/准入默认是 access gate，不作为唯一 strategic target。
+至少3项，说明商品池如何扩展、稀有类别怎样解锁，避免只有“每天重复同一批属性”。
 
 ## 校验
 
@@ -258,4 +197,4 @@ next_stage_problem
 python scripts/validate_creation_plan.py plan.json
 ```
 
-schema_version 4 自动路由到 `validate_v14_plan.py`。
+schema_version 5 自动路由到 `validate_v15_plan.py`。
