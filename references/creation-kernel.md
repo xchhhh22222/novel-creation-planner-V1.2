@@ -93,3 +93,23 @@ BOOK_A 的资源竞争逻辑
 `当前致命需求 → 战略目标物能解决什么 → 线索如何出现 → 谁控制/谁也需要 → 进入门槛 → 多方势力入局 → 高潮兑现 → 赢后的代价 → 推出下一阶段`
 
 目标物的名字可以有强记忆点，但名称不能替代功能和冲突。
+
+
+## V1.3 单书核心优先
+
+创造层不再先做三套完整故事。
+
+顺序改为：
+
+```text
+素材支撑的 world / system / factions / resource loop
+→ 一个 shared_story_core
+→ 三个 title 选项
+→ 三个 opening 结构选项
+→ 三个素材溯源 golden_finger 选项
+→ 用户选择
+→ selected_story_variant
+→ strategic target / climax / 100章倒推
+```
+
+主角姓名、书名、机构改名等表面包装可以原创；核心世界运行、主体系、势力生态、资源循环和金手指默认不能脱离素材来源。

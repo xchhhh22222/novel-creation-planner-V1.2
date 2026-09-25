@@ -1,4 +1,4 @@
-# 素材调度协议 V1.1
+# 素材调度协议 V1.3
 
 本文件定义 `novel-creation-planner` 如何从共享素材库中“调度”素材，而不是只做关键词搜索。
 
@@ -30,7 +30,7 @@
 - 何时应该停止继续搜索；
 - 何时应输出 GAP 而不是硬凑。
 
-V1.1 禁止“把整个素材库都读一遍再想故事”。
+V1.3 禁止“把整个素材库都读一遍再想故事”，也禁止素材不足时由 AI 临场原创核心槽位。
 
 ## 2. 素材槽位
 
@@ -306,3 +306,42 @@ V1.2 在创造层新增 `strategic_target` 槽位，它不等同于 `resource_as
 调度时先定功能，再由创造层重新命名与重设世界来源。不能因为来源书里某个物品很酷，就直接复制专名和完整设定。
 
 默认每个前100章大高潮至少对应一个 `strategic_target` 或功能等价的战略目标（资格、秘密、身份、入口也可以）。
+
+
+## 13. V1.3 Required Material Gates
+
+在生成单书选项板前，必须有以下 required slots：
+
+```text
+world_premise
+primary_system
+faction_ecology
+resource_loop
+golden_finger_candidates
+```
+
+前四项至少各有1个 QA 非 FAIL 的选中来源。
+
+`golden_finger_candidates` 必须提供足够候选，使最终3个金手指选项合计覆盖至少3个不同真实 material_id。
+
+若任一 required slot 缺失：
+
+```text
+material_dispatch.status = hold
+option_board = blocked
+```
+
+不得先生成故事再补素材。
+
+### Golden Finger 调度
+
+金手指检索顺序固定：
+
+1. `02_金手指 cluster` 找运行母型；
+2. 回读 `per_book`；
+3. 核对输入、处理、输出、限制、代价、成长、首次验证；
+4. 保留5—8个短名单；
+5. 选出3个适配同一 shared_story_core 的真实候选；
+6. 分别标 `DIRECT / ADAPT / HYBRID`。
+
+市场 benchmark 不能作为金手指来源。

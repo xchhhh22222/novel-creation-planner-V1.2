@@ -1,5 +1,5 @@
 interface:
-  display_name: "小说创造规划 V1.2"
-  short_description: "实时学赛道结构，调度素材库，再用战略目标物和大高潮倒推前100章"
+  display_name: "小说创造规划 V1.3"
+  short_description: "一个故事核心，三书名三开篇三素材金手指；用户选定后再做高潮倒推"
   default_prompt: >-
-    使用 $novel-creation-planner V1.2。若我要开新书，先只按赛道扫描同类新书榜 Top10，在合法范围内读取10本前10章，不按与我未来故事的相似度筛选；比较冲突启动、首次兑现、目标接力、情绪、章末钩子和4-10章循环，从中选3本结构最值得学习且长处互补的作品，再深拆前20章，逐章抽取主角目的、阻碍、行动、配角功能、兑现、情绪、钩子、下一章点击理由和状态变化，只保留可迁移结构 lesson。之后再读取 material-dispatch.md 调用素材库，搭世界前提、势力池、1-N套体系、普通资源、金手指、功法法宝；单独创造 strategic_target 战略目标物。默认先设计前100章约2个大高潮，再依据 climax-backplanning.md 从高潮反推4-8个前置锚点和小高潮。禁止复制对标书专名、人物、具体事件链或独特设定组合。
+    使用 $novel-creation-planner V1.3。市场 Top10 与3本前20章只提炼节奏、情绪、钩子、目标接力和兑现结构，不得从市场层创造世界、金手指、体系、势力、法宝或战略目标物。进入创作前先读取 material-source-gates.md 和 material-dispatch.md，为 world_premise、primary_system、faction_ecology、resource_loop、golden_finger_candidates 建立真实素材来源。只构造一个 shared_story_core，不再设计 A/B/C 三个不同故事。随后严格输出3个书名、3个服务同一故事核心的开篇、3个来自素材库的金手指候选；金手指只能 DIRECT/ADAPT/HYBRID，不允许 ORIGINAL。素材不足就 GAP/HOLD。用户未选择书名、开篇和金手指前，停止，不生成正式 strategic_target、两个大高潮或前100章脊柱。用户确认后再继续 climax-backplanning。
