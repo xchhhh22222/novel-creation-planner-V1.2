@@ -1,52 +1,39 @@
-# 创造计划机器契约 V1.3
+# 创造计划机器契约 V1.4
 
-V1.3 当前写入版本为 `schema_version: 3`。
+V1.4 当前写入版本为 `schema_version: 4`。
 
-V1/V2 旧计划仍由 `scripts/validate_creation_plan.py` 兼容读取；新开书一律写 V3。
+V1/V2/V3 旧计划继续兼容；新开书写 V4。
 
-## 1. 顶层
+## 顶层
 
 ```json
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "plan_id": "PLAN:...",
   "status": "candidate",
   "creation_mode": "greenfield",
-  "workflow_stage": "option_board",
+  "workflow_stage": "scaled",
   "brief": {},
   "shared_library_root": "D:/...",
-  "market_benchmark_ref": {
-    "benchmark_id": "MK:...",
-    "path": "market_benchmark.json",
-    "status": "complete"
-  },
-  "market_structural_lessons": ["MK:LESSON:001"],
-  "library_usage": {
-    "formal_card_ids": [],
-    "dna_candidate_ids": [],
-    "gaps": []
-  },
-  "material_dispatch": {
-    "status": "complete",
-    "slots": [],
-    "source_concentration_risks": [],
-    "compatibility_checks": [],
-    "stop_reason": ""
-  },
+  "market_benchmark_ref": {},
+  "market_structural_lessons": [],
+  "library_usage": {},
+  "material_dispatch": {},
   "shared_story_core": {},
-  "option_board": {
-    "title_options": [],
-    "opening_options": [],
-    "golden_finger_options": []
-  },
+  "option_board": {},
   "selection": {
-    "status": "pending",
-    "title_option_id": "",
-    "opening_option_id": "",
-    "golden_finger_option_id": ""
+    "status": "confirmed",
+    "title_option_id": "TITLE:A",
+    "opening_option_id": "OPENING:A",
+    "golden_finger_option_id": "GFOPT:B"
+  },
+  "local_scale_1_100": {},
+  "scale_gate": {
+    "status": "PASS",
+    "reasons": []
   },
   "post_selection": {
-    "strategic_target_status": "blocked",
+    "strategic_target_status": "ready",
     "climax_backplan_ref": {}
   },
   "material_gap_orders": [],
@@ -56,179 +43,219 @@ V1/V2 旧计划仍由 `scripts/validate_creation_plan.py` 兼容读取；新开�
 
 `workflow_stage` 允许：
 
-- `material_hold`：核心素材不足，停止；
-- `option_board`：已生成三类选项，等待用户；
-- `selected`：用户已选书名/开篇/金手指；
-- `backplanned`：已继续完成高潮倒推。
+- `material_hold`
+- `option_board`
+- `selected`
+- `scaled`
+- `backplanned`
 
-## 2. Shared Story Core
+V1.3 的 shared_story_core / option_board / selection 规则继续有效。
 
-V1.3 只有一个故事核心：
-
-```json
-{
-  "core_id": "CORE:001",
-  "reader_promise": "读者核心承诺",
-  "protagonist_baseline": "主角基础身份与初始困境",
-  "longline_problem": "长线中心问题",
-  "world_premise": {},
-  "primary_system": {},
-  "faction_ecology": {},
-  "resource_loop": {},
-  "story_engine": "持续故事发动机"
-}
-```
-
-其中以下四项必须是素材支撑对象：
-
-`world_premise / primary_system / faction_ecology / resource_loop`
-
-统一结构：
+## local_scale_1_100
 
 ```json
 {
-  "candidate_text": "用于本书的候选设定",
-  "source_mode": "DIRECT|ADAPT|HYBRID",
-  "material_refs": [
-    {
-      "material_id": "WB:...",
-      "module": "worldbuilding",
-      "record_id": "WB:BOOK:...",
-      "book_id": "BOOK_...",
-      "qa_status": "PASS"
-    }
-  ],
-  "retained_structure": "从素材保留的结构",
-  "adaptations": ["为本书做了什么兼容重设"]
+  "scale_id": "SCALE:001",
+  "scope_label": "当前城市/区域",
+  "active_factions": [],
+  "external_factions": [],
+  "faction_relations": [],
+  "systems": [],
+  "system_relations": [],
+  "progression_scope": {},
+  "technique_pool": [],
+  "combat_art_pool": [],
+  "artifact_pool": [],
+  "ordinary_resources": [],
+  "local_map_nodes": [],
+  "external_map_hooks": [],
+  "golden_finger_interfaces": {},
+  "handoff_after_100": {}
 }
 ```
 
-默认不允许 `ORIGINAL`。
+### active_factions
 
-## 3. Required Material Roles
+必须 4—7 个。
 
-`material_dispatch.slots` 至少包含：
+每项：
 
 ```text
-world_premise
-primary_system
-faction_ecology
-resource_loop
-golden_finger_candidates
+faction_id
+name
+role
+controlled_assets_or_permissions
+current_interest
+protagonist_relation
+stage_entry
+material_refs
 ```
 
-`option_board` 阶段要求前四项至少各有一个可用来源，`golden_finger_candidates` 至少有3个不同 material_id。
+### faction_relations
 
-素材不足时把 `workflow_stage` 设为 `material_hold`，不要伪造选项。
+至少包含：
 
-## 4. 三个书名
+- 1 条 `ally / conditional_ally / dependency / regulator`
+- 1 条 `competitor / hostile`
 
-`title_options` 恰好3项：
+每项：
 
-```json
-{
-  "option_id": "TITLE:A",
-  "title": "候选书名",
-  "promise_focus": "标题承诺",
-  "same_core_id": "CORE:001"
-}
+```text
+from
+to
+relation_type
+reason
 ```
 
-书名可以原创。
+### external_factions
 
-## 5. 三个开篇
+0—2 个，仅描述它怎样伸手进当前城市：
 
-`opening_options` 恰好3项，全部引用同一个 core：
-
-```json
-{
-  "option_id": "OPENING:A",
-  "same_core_id": "CORE:001",
-  "benchmark_lesson_ids": ["MK:LESSON:001"],
-  "opening_pattern": "危机→解法→兑现",
-  "chapter_1_3": [
-    {
-      "chapter": 1,
-      "goal": "目标",
-      "obstacle": "阻碍",
-      "payoff": "兑现",
-      "hook": "钩子"
-    }
-  ],
-  "chapter_4_10_loop": "4-10章循环",
-  "what_stays_fixed": ["世界", "主角", "体系", "主线"],
-  "risk": "风险"
-}
+```text
+faction_id
+name
+interest
+local_touchpoint
+future_use
+material_refs
 ```
 
-每个 `chapter_1_3` 必须恰好覆盖1、2、3章。
+### systems
 
-市场 lesson 只改变结构，不得改变 story core。
+必须 2—3 套。
 
-## 6. 三个金手指
+每套：
 
-`golden_finger_options` 恰好3项：
-
-```json
-{
-  "option_id": "GF:A",
-  "same_core_id": "CORE:001",
-  "name_candidate": "候选名",
-  "source_mode": "DIRECT|ADAPT|HYBRID",
-  "material_refs": [],
-  "retained_mechanism": "保留机制",
-  "adaptations": [],
-  "input": "输入",
-  "process": "处理",
-  "output": "输出",
-  "limits": [],
-  "costs": [],
-  "growth": "成长",
-  "first_validation_plan": "首次验证",
-  "compatibility_with_core": "与世界/体系/资源如何兼容",
-  "risk": "风险"
-}
+```text
+system_id
+name
+social_status
+entry_condition
+power_source
+current_revealed_realms
+strength
+weakness
+resource_dependency
+can_dual_cultivate
+relation_to_protagonist
+material_refs
 ```
 
-硬规则：
+`system_relations` 至少1条，说明社会评价、资源竞争、互补/克制/互斥等。
 
-- 不允许 `ORIGINAL`；
-- 所有 material ref 的 `module` 必须是 `golden_finger`；
-- DIRECT/ADAPT 至少1个真实素材；
-- HYBRID 至少2个真实素材；
-- 三个选项合计至少3个不同 material_id；
-- 所有 material_id 必须存在于顶层 `library_usage`。
+### progression_scope
 
-## 7. 用户选择门
+```text
+current_revealed_realms
+protagonist_start_realm
+climax_1_expected_realm
+climax_2_expected_realm
+future_realm_hint
+```
 
-`selection.status=pending` 时：
+只展开前100章会看到的层级。
 
-- 三个选择 ID 必须为空；
-- `post_selection.strategic_target_status=blocked`；
-- `climax_backplan_ref` 必须为空；
-- 不允许继续写正式高潮和100章脊柱。
+### technique_pool / combat_art_pool / artifact_pool
 
-`selection.status=confirmed` 时：
+- technique_pool ≥ 3
+- combat_art_pool ≥ 3
+- artifact_pool ≥ 2
 
-- 必须各选择一个有效 title/opening/golden_finger option；
-- 才允许进入 `selected` 或 `backplanned`。
+每项必须带 `material_refs`，不允许无来源临场补造。
 
-## 8. 市场层防火墙
+### ordinary_resources
 
-市场结果只允许贡献：
+3—6 项。每项说明：
 
-`pace / hook / emotion / goal_relay / payoff / supporting_character / opening_loop / structural_lesson`
+```text
+resource_id
+name
+source
+controlled_by
+used_by
+acquisition
+consumption
+golden_finger_relation
+material_refs
+```
 
-不得把市场样本里的具体金手指、世界、体系、势力、法宝、战略目标物写入本计划作为创作来源。
+### local_map_nodes
 
-## 9. 校验
+3—6 个当前城市节点。
+
+`external_map_hooks` 0—2 个，只留后继接口。
+
+### golden_finger_interfaces
+
+必须包含：
+
+```text
+can_strengthen
+cannot_replace
+dependencies
+anticipation_loop
+resource_loop_protection
+```
+
+### handoff_after_100
+
+必须包含：
+
+```text
+protagonist_power
+formal_status
+owned_techniques
+owned_combat_arts
+owned_artifacts
+known_systems
+unexpanded_systems
+active_factions
+external_factions_touched
+used_material_ids
+remaining_material_directions
+unpaid_promises
+next_stage_problem
+```
+
+## SCALE_GATE
+
+当 `workflow_stage=scaled/backplanned`：
+
+- `scale_gate.status` 必须为 PASS；
+- local scale 必须通过全部数量和引用规则；
+- `post_selection.strategic_target_status` 才能为 ready。
+
+selection 尚未确认时，local scale 不应被展开。
+
+## 高潮
+
+SCALE_GATE PASS 后，高潮使用 V1.4 backplan 契约：
+
+```bash
+python scripts/validate_v14_climax.py climax_backplan.json
+```
+
+每个大高潮必须包含：
+
+```text
+power_before
+power_after
+combat_capability_change
+key_gain
+status_before
+status_after
+new_permissions
+new_responsibilities
+new_enemies
+next_stage_problem
+```
+
+资格/排名/准入默认是 access gate，不作为唯一 strategic target。
+
+## 校验
 
 ```bash
 python scripts/validate_creation_plan.py plan.json
 ```
 
-V3 会自动路由到：
-
-```text
-scripts/validate_v13_plan.py
-```
+schema_version 4 自动路由到 `validate_v14_plan.py`。

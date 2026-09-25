@@ -23,3 +23,7 @@ jobs:
         run: python scripts/test_validate_v12_artifacts.py
       - name: V1.3 single-story plan regression
         run: python scripts/test_validate_v13_plan.py
+      - name: V1.4 local-scale plan regression
+        run: python scripts/test_validate_v14_plan.py
+      - name: V1.4 climax transition regression
+        run: python scripts/test_validate_v14_climax.py

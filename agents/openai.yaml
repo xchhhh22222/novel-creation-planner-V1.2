@@ -1,5 +1,5 @@
 interface:
-  display_name: "小说创造规划 V1.3"
-  short_description: "一个故事核心，三书名三开篇三素材金手指；用户选定后再做高潮倒推"
+  display_name: "小说创造规划 V1.4"
+  short_description: "选项确认后补100章局部Scale，再用状态跃迁设计两个大高潮"
   default_prompt: >-
-    使用 $novel-creation-planner V1.3。市场 Top10 与3本前20章只提炼节奏、情绪、钩子、目标接力和兑现结构，不得从市场层创造世界、金手指、体系、势力、法宝或战略目标物。进入创作前先读取 material-source-gates.md 和 material-dispatch.md，为 world_premise、primary_system、faction_ecology、resource_loop、golden_finger_candidates 建立真实素材来源。只构造一个 shared_story_core，不再设计 A/B/C 三个不同故事。随后严格输出3个书名、3个服务同一故事核心的开篇、3个来自素材库的金手指候选；金手指只能 DIRECT/ADAPT/HYBRID，不允许 ORIGINAL。素材不足就 GAP/HOLD。用户未选择书名、开篇和金手指前，停止，不生成正式 strategic_target、两个大高潮或前100章脊柱。用户确认后再继续 climax-backplanning。
+    使用 $novel-creation-planner V1.4。沿用V1.3的市场结构学习、素材来源硬门与单书选项板。用户选定书名、开篇、金手指后，不要直接设计高潮；先读取local-scale-100.md，只规划前100章真正会用到的局部世界：4-7个当前势力及盟友/冲突关系、0-2个外部势力接口、2-3套当前体系及体系关系、当前境界、至少3个功法、3个武技、2个法宝/装备、3-6种普通资源、3-6个本地地图节点、金手指与外部资源/任务的接口。更大世界只留future hooks。SCALE_GATE通过后才进入climax-backplanning。每个大高潮必须明确实力前后、核心收获、身份前后、新权限、新责任/敌人和下一阶段问题。资格/排名/准入默认只作为access gate。100章结束输出handoff_after_100，供后继plan调用剩余素材。
