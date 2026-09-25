@@ -165,3 +165,44 @@ world_premise、golden_finger、primary_system、faction_ecology、climax_patter
 7. story spine；
 8. handoff_after_100；
 9. 债务与缺口。
+
+
+## V1.5 素材池利用率审计
+
+SCALE_GATE 之前额外检查：
+
+- system_candidate_pool 是否4—6，并至少来自3本来源书；
+- active systems 是否2—3，latent systems 是否0—2；
+- technique_pool 是否6—10，active是否3—5；
+- combat_art_pool 是否8—12，active是否4—6，且至少覆盖5种战斗功能；
+- artifact_pool 是否5—8，active是否2—4；
+- 功法/武技池是否至少来自3本来源书，法宝池至少2本；
+- 候选是否先展示来源机制，再做当前世界适配；
+- 是否因为“用户举例武道+异能”就停止继续检索其它兼容体系。
+
+### 原创命名审计
+
+所有 technique / combat_art / artifact：
+
+- 必须保存 source_name_or_descriptor；
+- 新书 name 不得与来源名相同；
+- rename_rationale 必须说明按功能、世界术语、意象或体系风格如何重命名；
+- 禁止只加“真/改/新版”等机械改名。
+
+### 每日预算菜单审计
+
+若 engine_type=daily_priced_random_menu：
+
+- offer_pool ≥24；
+- 每日菜单固定10项；
+- 每项1—10点明码标价；
+- 当天可以买多个，总花费≤10；
+- 每项有数字 effect_value 与 effect_unit；
+- 至少覆盖6类效果；
+- 低/中/高价格带齐全；
+- 至少3张阶段菜单；
+- 每张菜单都说明购买组合与放弃项；
+- offer_pool 至少引用4个不同 material_id；
+- 商品必须有可记忆展示名，不得只写“气血控制/肉身适应/悟性”。
+
+任何一项缺失，不得把“素材库利用充分”判为 PASS。
