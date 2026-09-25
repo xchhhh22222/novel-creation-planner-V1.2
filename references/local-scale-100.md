@@ -1,4 +1,4 @@
-# 前100章局部 Scale 规划 V1.4
+# 前100章局部 Scale 规划 V1.5
 
 本文件只规划**当前100章真正会使用的世界信息**。
 
@@ -43,9 +43,9 @@ SCALE_GATE 未通过，不得进入高潮倒推。
 
 至少形成一个冲突闭环，而不是几个互不相干的组织名字。
 
-## 3. 修炼体系：当前100章只揭露2—3套
+## 3. 修炼体系：先建4—6套候选池，再激活2—3套
 
-默认选择2—3套会真正影响前100章的体系，例如武道、异能，以及一个稀有/伏笔体系。
+先读取 [material-pool-expansion.md](material-pool-expansion.md)，从素材库建立4—6套 `system_candidate_pool`，再选择2—3套 active systems；允许1—2套 latent systems 只留伏笔。不要因为用户举例“武道+异能”就停止检索。
 
 每套体系至少写：
 
@@ -90,17 +90,17 @@ future_realm_hint
 
 ### technique_pool
 
-至少3项，说明：
+先建立6—10项候选池，再用 `active_technique_ids` 选3—5项当前真正会用的。说明：
 `适配体系 / 训练方式 / 核心效果 / 限制 / 资源消耗 / 当前谁能获得 / material_refs`。
 
 ### combat_art_pool
 
-至少3项，说明：
+先建立8—12项候选池，再用 `active_combat_art_ids` 选4—6项。说明：
 `适配体系 / 使用场景 / 战斗功能 / 限制 / 首次可能出现阶段 / material_refs`。
 
 ### artifact_pool
 
-至少2项，说明：
+先建立5—8项候选池，再用 `active_artifact_ids` 选2—4项。说明：
 `适配体系 / 激活方式 / 效果 / 消耗 / 限制 / 获取入口 / material_refs`。
 
 更高级别只写 `future_tier_hint`，不展开清单。
@@ -144,8 +144,7 @@ future_realm_hint
 它怎样避免取代外部资源循环
 ```
 
-例如每日随机预算类金手指：
-`刷新 → 选择压力 → 任务验证 → 选择后果 → 下一次刷新期待`。
+例如每日随机预算类金手指，必须进一步读取 [golden-finger-menu-engine.md](golden-finger-menu-engine.md)，落成“10项菜单 + 明码标价 + 10点内多选 + 每日刷新”的可执行商品系统，而不是只列抽象强化类别。
 
 不能每章都只靠刷新菜单做钩子，要和任务、关系、资源、危机交替。
 
@@ -175,14 +174,17 @@ PASS 至少要求：
 
 - 4—7 个 active factions，并有明确盟友/冲突/依赖关系；
 - 0—2 个 external factions；
-- 2—3 套当前体系并有 system_relations；
+- system_candidate_pool 4—6套，最终active systems 2—3套，并有 system_relations；
 - 当前境界足以覆盖两个高潮；
-- technique_pool ≥ 3；
-- combat_art_pool ≥ 3；
-- artifact_pool ≥ 2；
+- technique_pool 6—10，active_technique_ids 3—5；
+- combat_art_pool 8—12，active_combat_art_ids 4—6；
+- artifact_pool 5—8，active_artifact_ids 2—4；
 - ordinary_resources 3—6 种；
 - local_map_nodes 3—6 个；
 - golden_finger_interfaces 完整；
 - handoff_after_100 完整。
 
 缺失时 HOLD，不得直接跳高潮。
+
+
+所有功法、武技、法宝候选都必须执行原创重命名：保留来源机制，禁止直接沿用来源书专名。具体规则见 `material-pool-expansion.md`。

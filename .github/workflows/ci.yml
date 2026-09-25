@@ -27,3 +27,5 @@ jobs:
         run: python scripts/test_validate_v14_plan.py
       - name: V1.4 climax transition regression
         run: python scripts/test_validate_v14_climax.py
+      - name: V1.5 material pools and menu engine regression
+        run: python scripts/test_validate_v15_plan.py
