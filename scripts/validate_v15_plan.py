@@ -35,7 +35,7 @@ def empty(v: Any) -> bool:
 
 
 def norm(s: Any) -> str:
-    return re.sub(r"[\s《》〈〉“”"'·:：._-]+","",str(s or "")).casefold()
+    return re.sub(r'[\s《》〈〉“”":：._-]+', '', str(s or '')).casefold()
 
 
 def require(errors:list[str], obj:Any, fields:set[str], where:str)->bool:
