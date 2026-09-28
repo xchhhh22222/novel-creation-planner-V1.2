@@ -24,7 +24,7 @@ description: V1.7 素材池驱动小说创造规划器：在V1.6人物生态与�
 - 保存 V1.2 市场对标包或高潮倒推包时，分别运行 `python scripts/validate_v12_artifacts.py benchmark <market_benchmark.json>` 与 `python scripts/validate_v12_artifacts.py climax <climax_backplan.json>`。
 - **需要从素材库选材、决定先查什么/查多少/何时停止：必须读取 [references/material-dispatch.md](references/material-dispatch.md)。**
 - **需要检查世界/体系/势力/资源/金手指是否真的来自素材库：必须读取 [references/material-source-gates.md](references/material-source-gates.md)。**
-- **需要输出3个书名、3个开篇、3个金手指并等待用户选择：必须读取 [references/single-story-option-board.md](references/single-story-option-board.md)。**
+- **需要在 V1.7 已确认世界/人物/势力/体系/资产/金手指后输出书名与开篇包装候选：读取 [references/single-story-option-board.md](references/single-story-option-board.md)。旧 schema 中的3个金手指选项仅作兼容映射，不得替换用户已在9张卡中确认的机制。**
 - 需要定位、迁移或复用跨书素材库：读取 [references/shared-library.md](references/shared-library.md)。
 - **用户选定后，需要补当前100章局部世界：必须读取 [references/local-scale-100.md](references/local-scale-100.md)。**
 - **需要扩充体系/功法/武技/法宝并做原创重命名：必须读取 [references/material-pool-expansion.md](references/material-pool-expansion.md)。**
@@ -185,9 +185,9 @@ SCALE_GATE=PASS 后，在当前 scale 内继续调度战略目标物和高潮母
 
 - 市场样本带平台、榜单、日期、来源和访问边界；Top10 排名位置全部保留，合格前10章正文样本通常不少于6本，否则标记偏差；完整 V1.2 对标还要求3本深拆至前20章。
 - 市场证据必须包含新书榜前10名清单、逐书前10章下载状态、逐书开篇卡和横向信号矩阵；不能只有排名、书名、简介或标签。
-- 不再要求三个完整故事。三个书名、三个开篇、三个金手指都必须服务同一个 shared_story_core。
-- 用户选择前必须回答“Top10 学到了什么结构、3本为什么入选、共享故事核心是什么、三个开篇如何只改变入场结构、三个金手指分别来自哪些素材”。用户确认后再回答第一高潮怎样兑现、第二高潮怎样由第一高潮后果推出。
+- 不再要求三个完整故事。V1.7 的 9 张世界卡与 9 张金手指卡是素材筛选窗口；后续书名和开篇包装候选必须服务同一个 shared_story_core。
+- 抽卡模式必须能回答“9张世界卡分别来自哪里、为什么不同”；熔炉模式还必须回答“Top10学到了什么结构、3本为什么入选、fusion recipe是什么”。进入金手指阶段后必须展示9张有来源且已做兼容检查的候选。世界、人物、势力、体系、资源和金手指未确认前，不得跳到高潮。
 - 选定方案的金手指必须有名称、输入、处理、输出、限制、代价、失败状态、克制方式和阶段成长；只有每日预算型才必须有24+商品原型与3张10项示例菜单。前100章 local scale 必须包含4—7个势力闭环、4—6套体系候选/2—3套active、6—10功法候选、8—12武技候选、5—8法宝装备候选、3—6种普通资源、3—6个本地地图节点；人物生态必须满足所选 relationship_mode，对多女主方案要求4—8女主候选/3—4 active、3—6反派候选/2—4 active、3—6配角、4—8关系发动机，并通过女主差异化与势力代表人物检查。
 - 只有用户要求七阶段或前300章规划时，七个阶段才逐一包含目标、冲突、成长、资源、人物、情绪兑现、主线进展、疲劳刷新和不可逆状态变化。
-- 第一轮只输出一个 shared_story_core、3个书名、3个开篇、3个素材溯源金手指及真实素材ID；用户确认后才输出战略目标物、两个高潮倒推锚点、债务账本、风险和待确认项。
+- V1.7 第一轮只执行入口：抽卡直接给9张世界卡；熔炉先给三书 structural fusion，再给9张世界卡。用户确认世界后才按人物→势力→绑定→体系→资产/资源→9张金手指→剧情层逐步推进。SCALE_GATE 通过后才输出战略目标物、两个高潮倒推锚点、债务账本、风险和待确认项。
 - 素材缺口订单只描述所需功能、阶段、情绪和验收标准，不指定照搬某本书。
