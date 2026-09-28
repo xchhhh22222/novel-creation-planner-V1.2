@@ -35,39 +35,11 @@ V1.7 不重写 Planner 后半段，只新增两个开头入口：
 
 详细协议见 `references/creation-entry-modes.md`。
 
-V1.2 会生成三个完整开书方向。V1.3 已取消这种模式。
+## 历史兼容说明
 
-现在固定为：
+V1.2 曾生成三个完整开书方向，V1.3—V1.6 又演化为“shared_story_core + 3书名/3开篇/3金手指”的早期选项板。V1.7 不删除旧 schema 和 validator，但**新任务不再以旧选项板作为执行主链**。
 
-```text
-同赛道 Top10
-↓
-学习节奏 / 情绪 / 钩子 / 目标接力
-↓
-选3本深拆前20章
-↓
-structural lessons
-↓
-素材来源硬门
-↓
-world / system / factions / resource loop
-↓
-一个 shared_story_core
-↓
-3个书名
-3个开篇
-3个素材溯源金手指
-↓
-等待用户选择
-↓
-selected_story_variant
-↓
-strategic target
-↓
-前100章约2个大高潮
-↓
-高潮倒推
-```
+V1.7 的实际执行顺序以 `SKILL.md` 与 `references/creation-entry-modes.md` 为准；旧 `option_board` 仅用于历史计划包兼容或最终包装映射。
 
 ## 最重要的边界
 
@@ -104,15 +76,16 @@ strategic target
 
 素材不足就 GAP/HOLD，不让 AI 临场补造。
 
-### 金手指最高强度来源门
+### 金手指来源门
 
-三个金手指候选：
+V1.7 的金手指不是开局先给3个，而是在世界、人物、势力、体系、功法/武技/装备/资源框架形成后，从 Nova `02_金手指` 中宽召回、去重并做兼容性检查，再展示 **9 张候选**。
 
-- 必须全部来自素材库；
-- 只能 DIRECT / ADAPT / HYBRID；
-- 不允许 ORIGINAL；
-- 三个选项合计至少3个不同 material_id；
-- HYBRID 至少2个真实素材来源。
+- 每张都必须有真实素材来源；
+- 不允许 ORIGINAL 凑数；
+- 用户可以选1个或融合2个；
+- HYBRID 必须保留至少2个真实来源及接口重构；
+- 不足9个真正不同候选时 PARTIAL/HOLD；
+- 金手指不得无代价消灭世界核心矛盾、势力资源循环或人物利益冲突。
 
 ## 项目结构
 
