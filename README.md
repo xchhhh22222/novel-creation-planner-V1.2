@@ -1,46 +1,45 @@
-# novel-creation-planner V1.6
+# novel-creation-planner V1.7
 
 面向网文开书的 **市场结构学习 + 素材来源硬门 + 单书选项板 + 素材候选池扩展 + 每日预算菜单引擎 + 高潮状态跃迁** Codex Skill。
 
-当前版本：**1.6.0**
+当前版本：**1.7.0**
 
-> 仓库名保留历史名称 `novel-creation-planner-V1.2`，实际代码版本已升级为 V1.5。
+> 仓库名保留历史名称 `novel-creation-planner-V1.2`，实际代码版本已升级为 V1.7。
 
 ## 核心变化
 
-V1.2 会生成三个完整开书方向。V1.3 已取消这种模式。
+V1.7 不重写 Planner 后半段，只新增两个开头入口：
 
-现在固定为：
+- **素材抽卡**：Nova 世界观候选 → 9 张世界卡 → 用户选择/融合；
+- **三书熔炉**：同赛道 Top10 → 选 3 本 → 结构熔炉 → 回 Nova 选世界。
+
+两种入口从 `selected_world_core` 开始完全合流，继续执行我们自己的规划链：
 
 ```text
-同赛道 Top10
-↓
-学习节奏 / 情绪 / 钩子 / 目标接力
-↓
-选3本深拆前20章
-↓
-structural lessons
-↓
-素材来源硬门
-↓
-world / system / factions / resource loop
-↓
-一个 shared_story_core
-↓
-3个书名
-3个开篇
-3个素材溯源金手指
-↓
-等待用户选择
-↓
-selected_story_variant
-↓
-strategic target
-↓
-前100章约2个大高潮
-↓
-高潮倒推
+世界核心
+→ 主角 + 多女主
+→ 势力生态
+→ 人物 × 势力绑定
+→ 修炼体系
+→ 功法 / 武技 / 装备 / 资源
+→ 金手指 9 选 / 融合
+→ 情绪 / 剧情线 / 开篇 / 篇章结构 / 剧情机制
+→ Local Scale 1-100
+→ SCALE_GATE
+→ strategic targets
+→ 两个大高潮
+→ 1-100章脊柱
 ```
+
+当前 V1.7 素材域固定为 **都市高武 + 多女主**，暂不增加男频/女频频道切换。9 张卡是展示窗口，不是素材库上限；候选不足时 PARTIAL/HOLD，禁止 AI 原创凑数。
+
+详细协议见 `references/creation-entry-modes.md`。
+
+## 历史兼容说明
+
+V1.2 曾生成三个完整开书方向，V1.3—V1.6 又演化为“shared_story_core + 3书名/3开篇/3金手指”的早期选项板。V1.7 不删除旧 schema 和 validator，但**新任务不再以旧选项板作为执行主链**。
+
+V1.7 的实际执行顺序以 `SKILL.md` 与 `references/creation-entry-modes.md` 为准；旧 `option_board` 仅用于历史计划包兼容或最终包装映射。
 
 ## 最重要的边界
 
@@ -77,15 +76,16 @@ strategic target
 
 素材不足就 GAP/HOLD，不让 AI 临场补造。
 
-### 金手指最高强度来源门
+### 金手指来源门
 
-三个金手指候选：
+V1.7 的金手指不是开局先给3个，而是在世界、人物、势力、体系、功法/武技/装备/资源框架形成后，从 Nova `02_金手指` 中宽召回、去重并做兼容性检查，再展示 **9 张候选**。
 
-- 必须全部来自素材库；
-- 只能 DIRECT / ADAPT / HYBRID；
-- 不允许 ORIGINAL；
-- 三个选项合计至少3个不同 material_id；
-- HYBRID 至少2个真实素材来源。
+- 每张都必须有真实素材来源；
+- 不允许 ORIGINAL 凑数；
+- 用户可以选1个或融合2个；
+- HYBRID 必须保留至少2个真实来源及接口重构；
+- 不足9个真正不同候选时 PARTIAL/HOLD；
+- 金手指不得无代价消灭世界核心矛盾、势力资源循环或人物利益冲突。
 
 ## 项目结构
 
@@ -121,6 +121,8 @@ python scripts/test_validate_creation_plan.py
 python scripts/test_search_dna_candidates.py
 python scripts/test_validate_v12_artifacts.py
 python scripts/test_validate_v13_plan.py
+python scripts/test_validate_v16_plan.py
+python scripts/test_validate_v17_plan.py
 ```
 
 V3 plan：
@@ -129,7 +131,7 @@ V3 plan：
 python scripts/validate_creation_plan.py plan.json
 ```
 
-`validate_creation_plan.py` 会自动把 schema_version 3 路由到 `validate_v13_plan.py`。
+`validate_creation_plan.py` 会按 schema_version 自动路由；V1.7 使用 schema_version 7，并路由到 `validate_v17_plan.py`。
 
 ## 外部依赖
 

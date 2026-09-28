@@ -1,73 +1,72 @@
-# 素材先行开书组装 V1.3
+# 素材先行开书组装 V1.7
 
-本文件定义“先用素材库确定一个故事核心，再给用户做选项”的备用路径。
+本文件定义 V1.7 的纯素材入口。它等价于 `creation-entry-modes.md` 中的 `inspiration_draw`，不再使用旧版“先凑 world/system/factions/resource/golden-finger 再生成选项板”的顺序。
 
-## 1. 输入
+## 1. 当前固定域
 
-分别读取：
+- 题材：都市高武；
+- 素材源：Nova；
+- 默认关系模式：多女主；
+- 暂不提供男女频/其它赛道入口。
 
-1. 市场 structural lessons：只负责节奏和钩子；
-2. DNA素材/02_金手指；
-3. DNA素材/03_世界观；
-4. DNA素材/04_修炼体系；
-5. 人物/主支线/篇章/剧情机制素材。
+## 2. 第一步只做世界抽卡
 
-## 2. 先过来源硬门
+```text
+03_世界观 cluster
+→ per_book / rule_chain / faction / resource circuit
+→ 宽召回
+→ 去重
+→ 证据回查
+→ 展示9张世界候选
+```
 
-必须先取得：
+用户可以选1张、融合2张、换单张或整批重抽。
 
-- world_premise；
-- primary_system；
-- faction_ecology；
-- resource_loop；
-- 至少3个可用 golden_finger 候选。
+不足9个真正不同且证据合格的候选时，输出 PARTIAL/HOLD，不允许原创凑满。
 
-来源不足时停止，不生成故事。
+## 3. 世界确认后进入 Planner 主链
 
-## 3. 只构造一个 shared_story_core
+```text
+selected_world_core
+→ 主角 + 多女主 / 反派 / 配角
+→ 势力生态
+→ 人物 × 势力绑定
+→ 修炼体系候选池
+→ 功法 / 武技 / 装备 / 普通资源
+→ 金手指9张候选
+→ 用户选1个或融合2个
+→ 01/06/07/08/09剧情层
+→ Local Scale 1-100
+→ SCALE_GATE
+→ strategic targets
+→ 两个大高潮
+→ story spine
+```
 
-一个 core 至少明确：
+每一步都继续从素材库召回并保留来源，不允许因为使用“灵感抽卡”入口就降低来源硬门。
 
-- reader_promise；
-- protagonist_baseline；
-- world_premise；
-- primary_system；
-- faction_ecology；
-- resource_loop；
-- longline_problem；
-- story_engine。
+## 4. 金手指不是第一步
 
-不得把三个不同素材组合分别扩成三本书。
+V1.7 金手指必须在世界、人物、势力、体系和资源框架明确后再筛选。这样可以检查：
 
-## 4. 再做三个维度的选项
+- 世界接口；
+- 修炼体系接口；
+- 资源循环；
+- 人物利益；
+- 是否无代价消灭中心矛盾。
 
-只做：
+金手指候选展示窗口为9张；9不是素材库上限。
 
-- 3个书名；
-- 3个开篇结构；
-- 3个金手指。
+## 5. 包装层
 
-书名可以原创。
-开篇来自市场 structural lessons。
-金手指必须来自素材库，并标 DIRECT / ADAPT / HYBRID。
-
-## 5. 用户选择后继续
-
-用户未选时停止。
-
-用户选定后：
-
-- 冻结 selected_story_variant；
-- 补 technique / artifact；
-- 从素材中构造 strategic_target；
-- 设计前100章两个高潮；
-- 从高潮倒推。
+shared_story_core 稳定后可以给书名、开篇等包装候选。旧 schema 若仍要求 `golden_finger_options`，只能映射用户已经确认的金手指机制，不得重新替用户选择。
 
 ## 6. 禁止
 
-- 三个完整故事；
-- 无来源金手指；
-- 无来源世界核心；
-- 市场样本直接变成新书设定；
-- 为了凑3个选项原创第四种机制；
-- 先写剧情后贴素材ID。
+- AI 随机原创九个世界观凑数；
+- AI 随机原创九个金手指凑数；
+- 世界刚选完就跳过人物/势力/体系直接生成100章；
+- 人物与势力分别生成但没有 faction_character_links；
+- 功法、武技、装备脱离所属体系与资源；
+- 先写剧情再反向给素材贴来源；
+- candidate 自动晋升 active。

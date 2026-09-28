@@ -29,3 +29,7 @@ jobs:
         run: python scripts/test_validate_v14_climax.py
       - name: V1.5 material pools and menu engine regression
         run: python scripts/test_validate_v15_plan.py
+      - name: V1.6 character ecology regression
+        run: python scripts/test_validate_v16_plan.py
+      - name: V1.7 dual-entry regression
+        run: python scripts/test_validate_v17_plan.py
