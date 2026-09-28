@@ -1,23 +1,35 @@
-# 前100章局部 Scale 规划 V1.6
+# 前100章局部 Scale 规划 V1.7
 
 本文件只规划**当前100章真正会使用的世界信息**。
 
 原则：**不做世界百科。只搭当前城市/区域的冲突闭环；更大世界只允许少量势力或线索伸进来。**
 
-## 1. 运行时机
+## 1. V1.7 运行时机
 
-只有用户已经确认书名、开篇、金手指之后运行：
+V1.7 在抽卡/熔炉入口之后，先按 `creation-entry-modes.md` 完成：
 
 ```text
-selected_story_variant
-→ local_scale_1_100
+selected_world_core
+→ 人物生态
+→ 势力生态
+→ 人物×势力绑定
+→ 修炼体系候选池
+→ 功法/武技/装备/资源
+→ 金手指9张候选并确认
+→ 剧情层
+```
+
+随后把这些已经确认的组件汇总为：
+
+```text
+local_scale_1_100
 → SCALE_GATE
 → strategic targets
 → two major climaxes
 → story spine 1-100
 ```
 
-SCALE_GATE 未通过，不得进入高潮倒推。
+书名和开篇包装可以在 shared_story_core 稳定后确认，但不得再作为“先于人物/势力/体系”的原因。SCALE_GATE 未通过，不得进入高潮倒推。
 
 ## 2. 势力：当前冲突闭环
 
