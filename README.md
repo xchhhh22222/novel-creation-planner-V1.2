@@ -148,6 +148,8 @@ python scripts/test_validate_creation_plan.py
 python scripts/test_search_dna_candidates.py
 python scripts/test_validate_v12_artifacts.py
 python scripts/test_validate_v13_plan.py
+python scripts/test_validate_v16_plan.py
+python scripts/test_validate_v17_plan.py
 ```
 
 V3 plan：
@@ -156,7 +158,7 @@ V3 plan：
 python scripts/validate_creation_plan.py plan.json
 ```
 
-`validate_creation_plan.py` 会自动把 schema_version 3 路由到 `validate_v13_plan.py`。
+`validate_creation_plan.py` 会按 schema_version 自动路由；V1.7 使用 schema_version 7，并路由到 `validate_v17_plan.py`。
 
 ## 外部依赖
 
