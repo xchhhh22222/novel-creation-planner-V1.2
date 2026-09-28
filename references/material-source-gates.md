@@ -35,6 +35,25 @@ specific_story_event
 
 > **市场榜告诉我们“怎么讲”，素材库告诉我们“拿什么讲”。**
 
+## 1A. V1.7 顺序覆盖
+
+V1.7 继续坚持“核心设定必须有素材来源”，但调整执行顺序：
+
+```text
+世界核心
+→ 人物生态
+→ 势力生态
+→ 人物×势力
+→ 修炼体系
+→ 功法/武技/装备/资源
+→ 金手指9张候选
+→ 剧情层
+```
+
+因此，本文件后续 V1.3 中“世界/体系/势力/资源/金手指全部先于人物与选项板”的旧顺序，不再作为 V1.7 的执行顺序。它们的来源硬门仍然有效，只是分别在对应阶段触发。
+
+抽卡模式与熔炉模式都不能绕过素材来源硬门。熔炉的 Top10 三书只能提供 market structural lessons。
+
 ## 2. Greenfield 必须素材支撑的核心槽位
 
 从零开书时，进入单书选项板前至少完成：
@@ -153,3 +172,17 @@ GOLDEN_FINGER_SOURCE_GATE = FAIL
 - 没有个体卡时标 CHARACTER_CARD_GAP，不得凭标签生成完整人物；
 - 新书人物必须至少重设背景、目标、资源、关系、关键选择、结果中的三项；
 - 多女主 active 角色不能全部来自同一本来源书的人物结构。
+
+## 10. V1.7 金手指阶段门
+
+当世界、人物、势力、体系和资源框架已经形成后，才执行 `GOLDEN_FINGER_SOURCE_GATE_V17`：
+
+1. 从 `02_金手指` cluster/per_book 宽召回；
+2. 回查 input / process / output / limits / cost / growth；
+3. 检查与 selected_world_core、active systems、ordinary resources、active character interests 的接口；
+4. 排除会无代价消灭中心矛盾或资源循环的机制；
+5. 去重后展示 9 张候选；不足9个真实差异候选则 PARTIAL/HOLD；
+6. 用户选1个或融合2个；
+7. 选中结果才允许进入剧情层与最终 Local Scale。
+
+9 张卡不得来自 AI 临场原创；HYBRID 必须保留每个来源组件与重新设计的兼容接口。
