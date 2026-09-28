@@ -97,44 +97,67 @@ V1.3 禁止“把整个素材库都读一遍再想故事”，也禁止素材不
 
 正式套路卡代表经过审核的“原子机制”；DNA candidate/per_book 代表来源书中的结构与证据。两者不能混成同一种可信度。
 
-## 4. 四波调度
+## 4. V1.7 分阶段调度
 
-### Wave 1：骨架召回
+V1.7 不再用旧的“先骨架、再人物、再表现层”四波顺序作为执行主链。抽卡/熔炉只负责入口，之后固定按依赖关系调度。
+
+### Stage 0：世界候选窗口
+
+先查：
+
+`03_世界观 cluster → per_book → rule_chain / faction / resource circuit`
+
+形成大于展示窗口的候选池，去重并回查证据后展示 9 张世界卡。世界未确认时，不为后续槽位生成正式 active 结果。
+
+### Stage 1：人物候选
+
+世界确认后填：
+
+`protagonist baseline → heroine / antagonist / supporting character → relationship_engine`
+
+人物候选要回答“在这个世界里为什么必须行动”，不能脱离世界核心单独抽性格模板。
+
+### Stage 2：势力与人物绑定
 
 先填：
 
-`reader_promise → world_premise → primary_system → golden_finger → first_major_climax`
+`faction_ecology → institution_pressure → resource control`
 
-每槽默认只保留 3—5 个候选。目标是确定故事骨架，不是填满设定百科。
+再填：
 
-如果这一步都无法闭环，禁止提前大量搜索功法、法宝和配角。
+`faction_character_links`
 
-### Wave 2：冲突与供给
+必须先知道势力控制什么，再把主角、女主、反派、配角放进势力网络。每个 active faction 至少有代表人物。
 
-骨架成立后再填：
+### Stage 3：体系与表现层
 
-`faction_ecology → resource_loop → heroine / antagonist → relationship_engine → plotline`
+依次填：
 
-检查“谁控制资源、谁阻碍主角、为什么必须行动”。
+`primary/secondary_system → realm_structure → technique → combat_art → artifact → growth_resource`
 
-### Wave 3：表现层
+仍执行候选池扩展门：体系4—6、功法6—10、武技8—12、装备5—8，再筛 active。
 
-再根据已经选定的骨架有条件地检索：
+### Stage 4：金手指 9 张窗口
 
-`realm_structure → technique → artifact → growth_resource → opening → plot_mechanism`
+此时才检索 `02_金手指`：
 
-功法和法宝必须服务已选体系、资源与剧情，不因为素材库里“看起来酷”就强塞。
+`cluster → per_book → input/process/output/limit/cost/growth`
 
-### Wave 4：验证与补洞
+每个候选必须做 world/system/resource/character-interest 兼容检查。宽召回后去重，向用户展示 9 张；不足9个真实差异候选则 PARTIAL/HOLD。用户选1个或融合2个。
 
-最后才：
+### Stage 5：剧情层
 
-- 回查选中组件所属 per_book；
-- 检查证据与 QA；
-- 检查同源依赖；
-- 检查跨书兼容；
-- 检查来源集中度；
-- 输出 GAP 与缺口订单。
+最后填：
+
+`reader_promise / emotion_payoff → plotline → opening → arc_structure → plot_mechanism`
+
+这些素材把已经确认的世界、人、势力、体系和金手指组织成可重复运行的故事。
+
+### Stage 6：Scale 与高潮
+
+将已确认组件写入 `local_scale_1_100`，通过 SCALE_GATE 后再检索 `strategic_target` 与高潮母型，并执行高潮倒推。
+
+停止条件不再是“某槽位搜到最低数量”，而是当前阶段的候选差异已经充分、证据合格、与前序约束兼容。
 
 ## 5. Cluster → Per-book → Component 三段检索
 
@@ -308,6 +331,17 @@ V1.2 在创造层新增 `strategic_target` 槽位，它不等同于 `resource_as
 
 默认每个前100章大高潮至少对应一个 `strategic_target` 或功能等价的战略目标（资格、秘密、身份、入口也可以）。
 
+
+## 12A. V1.7 顺序覆盖说明
+
+若本文件后续 V1.3 旧段落与 V1.7 执行顺序冲突，以本节和 `creation-entry-modes.md` 为准：
+
+- world_premise 是入口阶段首先确认的核心；
+- heroine / antagonist / relationship_engine 在势力和体系最终化之前进入候选；
+- faction_ecology 在人物候选后建立，再执行人物×势力绑定；
+- primary_system、technique、combat_art、artifact、resource 在其后；
+- golden_finger_candidates 不再作为“生成任何人物前”的前置硬门，而是在世界/人物/势力/体系/资源框架明确后进行 9 张候选筛选；
+- 市场熔炉只能提供 structural lessons，不能替代上述素材来源。
 
 ## 13. V1.3 Required Material Gates
 
